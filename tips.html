@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Diabetes Symptoms & Care</title>
+   <link rel="icon" href="/static/icon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    
+    body {
+      background: linear-gradient(to bottom right,#004AAD, #0065B3, #007BFF, #3399FF, #66A8FF, #99C2FF, #B3D1FF, #CCE5FF, #E6F0FF,#004AAD, #0065B3);
+      color: black;
+      font-family: Arial, sans-serif;
+      overflow-y: auto; /* Enable vertical scrolling */
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      min-height: 100vh; /* Set minimum height to viewport height */
+    }
+
+    h1, h2 {
+      text-align: center;
+      text-shadow: 0 0 10px white;
+      font-size: 36px; /* Adjust the font size as needed */
+    }
+
+    .image-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .image-container img {
+      width: 450px; /* Set the width of all images */
+      height: 450px; /* Set the height of all images */
+      margin: 20px; /* Add some margin between images */
+      border-radius: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Diabetes Symptoms & Care</h1>
+    <h2>Symptoms</h2>
+    <p>Here are some common symptoms of diabetes:</p>
+    <ul>
+      <li>Increased thirst</li>
+      <li>Frequent urination</li>
+      <li>Extreme hunger</li>
+      <li>Unexplained weight loss</li>
+      <!-- Add more symptoms as needed -->
+    </ul>
+    <h2>Care</h2>
+    <p>Proper care and management of diabetes are essential for maintaining good health. Here are some tips:</p>
+    <ul>
+      <li>Monitor blood sugar levels regularly</li>
+      <li>Follow a healthy diet plan</li>
+      <li>Stay physically active</li>
+      <li>Take medications as prescribed by your doctor</li>
+      <!-- Add more care tips as needed -->
+    </ul>
+    <h2>Images</h2>
+    <p>Below are some images related to diabetes symptoms and care:</p>
+    <div class="image-container">
+      <img src="{{ url_for('static', filename='img/img1.png') }}" alt="Symptom 1">
+      <img src="{{ url_for('static', filename='img/img2.png') }}" alt="Symptom 2">
+      <img src="{{ url_for('static', filename='img/img3.jpg') }}" alt="Care 1">
+      <img src="{{ url_for('static', filename='img/img4.jpg') }}" alt="Care 2">
+      <!-- Add more images as needed -->
+    </div>
+  </div>
+</body>
+</html>

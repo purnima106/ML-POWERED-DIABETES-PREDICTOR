@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Appointments</title>
+    <link rel="icon" href="/static/icon.ico" type="image/x-icon">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Reset default margin and padding */
+        body, h1, form, input, table, th, td {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Set body font and background */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom left,#004AAD, #0065B3, #007BFF, #3399FF, #66A8FF, #99C2FF, #B3D1FF, #CCE5FF, #E6F0FF,#004AAD, #0065B3);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black; /* Set text color to white */
+        }
+
+        /* Container styling */
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 20px; /* Rounded corners */
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+            max-width: 600px; /* Set a maximum width for the container */
+            width: 100%; /* Make the container responsive */
+        }
+
+        /* arrow icon styling */
+        .arrow-icon {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            z-index: 9999;
+            color: white;
+        }
+
+        /* Input field styling */
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        textarea {
+            width: calc(100% - 10px); /* Make the input boxes take up the full width of the container */
+            padding: 15px;
+            margin-bottom: 20px; /* Increase margin for better separation between input boxes */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Button styling */
+        button[type="submit"] {
+            background-color: #222222; /* Matte black */
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #444444; /* Darker matte black on hover */
+        }
+
+        /* Message styling */
+        .message {
+            display: none; /* Initially hidden */
+            margin-top: 20px;
+            color: green; /* Success message color */
+        }
+    </style>
+</head>
+<body>
+    <!-- Arrow icon -->
+    <a href="/about-us" class="arrow-icon">
+        <i class="fa-solid fa-arrow-left-long"></i>
+    </a>
+
+    <div class="container">
+        <h1>User Appointments</h1>
+        <form id="appointment-form">
+            <input type="text" name="name" placeholder="Enter your name" required><br>
+            <input type="date" name="date" required><br>
+            <input type="time" name="time" required><br>
+            <textarea name="message" rows="2" placeholder="Enter message to doctor"></textarea><br>
+            <button type="submit">Submit</button>
+        </form>
+        <div class="message" id="success-message">Thank you! We will reach out to you soon.</div>
+    </div>
+
+    <script>
+        document.getElementById("appointment-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Make AJAX request to submit form data
+            var formData = new FormData(this);
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/appoint");
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById("success-message").style.display = "block"; // Show success message
+                    document.getElementById("appointment-form").reset(); // Clear form fields
+                } else {
+                    console.error("Error:", xhr.statusText);
+                }
+            };
+            xhr.send(formData);
+        });
+    </script>
+</body>
+</html>
